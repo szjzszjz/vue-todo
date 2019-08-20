@@ -19,7 +19,7 @@
 <style lang="stylus" scoped>
   #footer{
     position: absolute
-    bottom: 1vh
+    bottom: -4vh
     width 100%
     text-align center
     color:white;

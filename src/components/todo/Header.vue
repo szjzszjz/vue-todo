@@ -17,8 +17,8 @@
     .title {
       text-align center
       font-size: 9vw
-      /*font-max-size 110px*/
-      margin: 2vh 0 4vh 0
+      font-max-size 50px
+      margin: -15vh 0 0 0
       color: #ffffff
       text-shadow 4px 4px 8px #000
     }

@@ -17,8 +17,8 @@
     name: 'App',
     components: {
       TodoHeader, // 不能用header 避免和原生的冲突
-      TodoFooter,
-      TodoTodo
+      TodoTodo,
+      TodoFooter
     }
   }
 </script>

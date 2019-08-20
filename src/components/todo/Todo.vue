@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div class="real-app">
+  <div class="todo">
+    <div class="add-item">
       <input
         type="text"
         autofocus="autofocus"
@@ -9,12 +9,19 @@
         @keyup.enter="addTodo"
       >
     </div>
-    <div class="content">
-      <item :todo="todo"
-            v-for="todo of futodos"
-            :key="todo.id"
-            @deleteTodo="deleteTodo"/>
+
+    <div class="content-wrapper">
+      <div class="content" v-show="!showTip">
+        <item :todo="todo"
+              v-for="todo of futodos"
+              :key="todo.id"
+              @deleteTodo="deleteTodo"/>
+      </div>
+      <div class="tip" v-show="showTip">
+       {{this.tip}}
+      </div>
     </div>
+
     <div class="control">
       <tabs :todos="todos"
             :filter="filter"
@@ -39,7 +46,8 @@
           completed: false
         },
         todos: [],
-        filter: 'all'
+        filter: 'all',
+        tip: 'Life cannot be blank'
       }
     },
     computed: {
@@ -50,31 +58,32 @@
         }
         let completed = this.filter === 'completed'
         return this.todos.filter(todo => todo.completed === completed)
+      },
+      showTip () {
+        return this.todos.length === 0
       }
     },
     methods: {
       addTodo (data) {
-        console.log('addtodo')
+        console.log(data.target.value.trim())
         // unshift: 将元素插入到数组的首位
-        this.todos.unshift({
-          id: id++,
-          content: data.target.value.trim(),
-          completed: false
-        })
-        data.target.value = ''
+        if (data.target.value.trim() === '') {
+          alert('please enter something ...')
+        } else {
+          this.todos.unshift({
+            id: id++,
+            content: data.target.value.trim(),
+            completed: false
+          })
+          data.target.value = ''
+          console.log(this.todos)
+        }
       },
       deleteTodo (id) {
-        console.log('delete')
-        this.todos.splice(this.todos.indexOf((todo) => todo.id === id), 1)
+        console.log('delete: ' + id)
+        this.todos.splice(this.todos.findIndex((todo) => todo.id === id), 1)
       },
       toggleFilter (state) {
-        // if (state === 'all') {
-        //     this.futodos = this.todos
-        // } else if (state === 'active') {
-        //   this.futodos = this.todos.filter((todo) => !todo.completed)
-        // } else {
-        //   this.futodos = this.todos.filter((todo) => todo.completed)
-        // }
         this.filter = state
       },
       clearAllCompleted () {
@@ -90,9 +99,17 @@
 
 <style lang="stylus" scoped>
   @import "~styles/varibles.styl"
-  .real-app {
+  .todo {
+    -webkit-box-sizing: border-box
+    -moz-box-sizing: border-box
+    box-sizing: border-box
     position: relative
+    height: 65vh
+    /*background-color: yellowgreen*/
+  }
 
+  .add-item {
+    position: relative
     width $todo-width
     margin: 0 auto
     /*box-shadow 4px 4px 5px #888888*/
@@ -115,21 +132,43 @@
       padding: 0.7vw 1vw
       border-radius $todo-border-radius
       box-shadow 4px 4px 5px #888888
-      margin: 0 auto
+      margin: -3vh auto 0
     }
   }
 
+  .content-wrapper {
+    position: relative
+    overflow hidden
+    left: 15%
+    width: $todo-width
+    background-color: rgba(0, 0, 0, 0.3)
+
+  }
+  .tip{
+    position: relative
+    height: 48vh
+    width: 100%
+    line-height: 48vh
+    text-align center
+    font-size:5vw
+    font-weight bold
+    color: #ffffff
+  }
+
   .content {
-    /*position: relative;
-    z-index 3*/
-    background-color: black
+    position: relative
+    height: 48vh
+    width: 100%
+    overflow-y scroll
+    /*overflow-x hidden*/
+    /*max-height: 47vh*/
   }
 
   .control {
-    position: relative;
-    z-index 3
+    position: absolute
+    left: 15%
+    bottom 0
     width $todo-width
-    margin 0 auto
     background-color: red
   }
 

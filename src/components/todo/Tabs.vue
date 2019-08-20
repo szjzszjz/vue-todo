@@ -51,9 +51,12 @@
 <style lang="stylus" scoped>
   //  先定位布局 后大小内容
   .helper {
+    /*position: absolute*/
+    /*bottom: 0*/
     display: flex
     justify-content space-between
-    line-height: 30px
+    line-height: 4vh
+    height: 4vh
     padding: 5px 0
     font-weight:100
     font-size:14px

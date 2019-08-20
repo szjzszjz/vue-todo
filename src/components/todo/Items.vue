@@ -28,7 +28,7 @@
   @import "~styles/varibles.styl"
   .todo-item {
     position relative
-    width $todo-width
+    width 100%
     margin:0 auto
     border-radius $todo-border-radius
     background-color #ffffff
