@@ -11,12 +11,16 @@
 </script>
 
 <style lang="stylus" scoped>
+  @import "~styles/varibles.styl"
   #header {
-    text-align center
+    position: relative
     .title {
-      font-size: 100px
-      font-weight 100
-      color #ffffff
+      text-align center
+      font-size: 9vw
+      /*font-max-size 110px*/
+      margin: 2vh 0 4vh 0
+      color: #ffffff
+      text-shadow 4px 4px 8px #000
     }
   }
 

@@ -18,10 +18,12 @@
 
 <style lang="stylus" scoped>
   #footer{
-    color: white
+    position: absolute
+    bottom: 1vh
+    width 100%
     text-align center
-    margin-top:200px
-
+    color:white;
+    text-shadow:2px 2px 4px #000000;
   }
 
 </style>
