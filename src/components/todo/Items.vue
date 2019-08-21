@@ -16,7 +16,7 @@
       }
     },
     methods: {
-      deleteTodo () {
+      deleteTodo() {
         console.log('deletetodo')
         this.$emit('deleteTodo', this.todo.id)
       }

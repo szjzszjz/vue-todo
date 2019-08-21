@@ -25,22 +25,22 @@
         require: true
       }
     },
-    data () {
+    data() {
       return {
         states: ['all', 'active', 'completed']
       }
     },
     computed: {
-      unfinishedTodo () {
+      unfinishedTodo() {
         return this.todos.filter((todo) => todo.completed === false).length
       }
 
     },
     methods: {
-      clearAllCompleted () {
+      clearAllCompleted() {
         this.$emit('clearAllCompleted')
       },
-      toggleFilter (state) {
+      toggleFilter(state) {
         console.log(state)
         this.$emit('toggleFilter', state)
       }

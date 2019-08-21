@@ -25,6 +25,7 @@ module.exports = {
     'generator-star-spacing': 'off',
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    'indent': 0
+    'indent': 0, //除去首行缩进
+    'space-before-function-paren': [2, 'never'], //函数定义时括号前面要不要有空格
   }
 }

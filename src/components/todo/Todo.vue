@@ -18,7 +18,7 @@
               @deleteTodo="deleteTodo"/>
       </div>
       <div class="tip" v-show="showTip">
-       {{this.tip}}
+        {{this.tip}}
       </div>
     </div>
 
@@ -38,7 +38,7 @@
   let id = 0
   export default {
     name: 'Todo',
-    data () {
+    data() {
       return {
         todo: {
           id: 0,
@@ -52,19 +52,19 @@
     },
     computed: {
       // 只要todos有任何变化都会重新计算items 所有利用计算属性对数据进行筛选
-      futodos () {
+      futodos() {
         if (this.filter === 'all') {
           return this.todos
         }
         let completed = this.filter === 'completed'
         return this.todos.filter(todo => todo.completed === completed)
       },
-      showTip () {
+      showTip() {
         return this.todos.length === 0
       }
     },
     methods: {
-      addTodo (data) {
+      addTodo(data) {
         console.log(data.target.value.trim())
         // unshift: 将元素插入到数组的首位
         if (data.target.value.trim() === '') {
@@ -79,14 +79,14 @@
           console.log(this.todos)
         }
       },
-      deleteTodo (id) {
+      deleteTodo(id) {
         console.log('delete: ' + id)
         this.todos.splice(this.todos.findIndex((todo) => todo.id === id), 1)
       },
-      toggleFilter (state) {
+      toggleFilter(state) {
         this.filter = state
       },
-      clearAllCompleted () {
+      clearAllCompleted() {
         this.todos = this.todos.filter(todo => !todo.completed)
       }
     },
@@ -145,13 +145,14 @@
     background-color: rgba(0, 0, 0, 0.3)
 
   }
-  .tip{
+
+  .tip {
     position: relative
     height: 48vh
     width: 100%
     line-height: 48vh
     text-align center
-    font-size:5vw
+    font-size: 5vw
     font-weight bold
     color: #ffffff
   }
