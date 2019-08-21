@@ -59,7 +59,7 @@
     height: 4vh
     padding: 5px 0
     font-weight:100
-    font-size:14px
+    font-size:18px
     -webkit-font-smoothing: antialiased
     font-smoothing: antialiased
     background-color: #fff

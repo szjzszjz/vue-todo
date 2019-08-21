@@ -122,9 +122,10 @@
       outline none // 去掉自带的蓝色边框
       box-sizing border-box
       font-size $todo-font-size
-      line-height: 5vw
-      height 5vw
+      line-height: 6vh
+      height 6vh
       max-height: 60px
+      min-height: 40px
       top: 0
       left 0
       width: 100%
@@ -157,7 +158,7 @@
 
   .content {
     position: relative
-    height: 48vh
+    height: 53vh
     width: 100%
     overflow-y scroll
     /*overflow-x hidden*/
@@ -165,9 +166,10 @@
   }
 
   .control {
-    position: absolute
-    left: 15%
-    bottom 0
+    /*position: absolute*/
+    /*left: 15%*/
+    /*bottom 0*/
+    margin: 1vh 0 0 15%
     width $todo-width
     background-color: red
   }
