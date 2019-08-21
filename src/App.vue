@@ -9,8 +9,8 @@
 </template>
 
 <script>
-  import TodoHeader from '@/components/todo/Header'
-  import TodoFooter from '@/components/todo/Footer'
+  import TodoHeader from '@/components/layout/Header'
+  import TodoFooter from '@/components/layout/Footer'
   import TodoTodo from '@/components/todo/Todo'
 
   export default {
@@ -24,5 +24,5 @@
 </script>
 
 <style lang="stylus" scoped>
-  @import "blur.styl"
+  @import "assets/styles/blur.styl"
 </style>
