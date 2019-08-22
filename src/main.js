@@ -3,15 +3,19 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import SlowFade from '@/common/fade/index'
+import NotificationBar from '@/common/notifacation/index'
 
 import './assets/styles/global.styl'
 
+Vue.use(SlowFade)
+Vue.use(NotificationBar)
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
-  components: { App },
+  components: {App},
   template: '<App/>'
 })

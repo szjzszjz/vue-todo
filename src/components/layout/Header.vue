@@ -1,12 +1,22 @@
 <template>
   <div id="header">
-    <h1 class="title">TODO</h1>
+    <h1 class="title" @click="notify">TODO</h1>
   </div>
 </template>
 
 <script>
   export default {
-    name: 'Header'
+    name: 'Header',
+    methods: {
+      notify() {
+        this.$notify({
+          content: 'content test',
+          btn: 'close',
+          bgc: '#303030',
+          autoCloseTime: 6000
+        })
+      }
+    }
   }
 </script>
 
@@ -14,6 +24,7 @@
   @import "~styles/varibles.styl"
   #header {
     position: relative
+
     .title {
       text-align center
       font-size: 9vw

@@ -1,6 +1,6 @@
 <template>
   <div class="todo">
-    <div class="add-item">
+     <div class="add-item">
       <input
         type="text"
         autofocus="autofocus"

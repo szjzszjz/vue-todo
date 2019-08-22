@@ -1,9 +1,11 @@
 <template>
-  <div :class="['todo-item', todo.completed ? 'completed':'']">
-    <input type="checkbox" class="toggle" v-model="todo.completed">
-    <label>{{todo.content}}</label>
-    <button class="destroy" @click="deleteTodo"></button>
-  </div>
+  <transition name="fade">
+    <div :class="['todo-item', todo.completed ? 'completed':'']">
+      <input type="checkbox" class="toggle" v-model="todo.completed">
+      <label>{{todo.content}}</label>
+      <button class="destroy" @click="deleteTodo"></button>
+    </div>
+  </transition>
 </template>
 
 <script>
@@ -29,13 +31,14 @@
   .todo-item {
     position relative
     width 100%
-    margin:0 auto
+    margin: 0 auto
     border-radius $todo-border-radius
     background-color #ffffff
     font-size $todo-font-size
     border-bottom 1px solid rgba(0, 0, 0, 0.6)
 
     // 鼠标悬停在todo-item上之后显示button上的内容
+
     &:hover {
       .destroy:before {
         content: '×'
@@ -73,11 +76,13 @@
     appearance: none;
     outline none
     //之后添加内容
+
     &:after {
-     content url('~assets/images/round.svg')
+      content url('~assets/images/round.svg')
     }
 
     //点击之后 （选自之后显示）
+
     &:checked:after {
       content: url('~assets/images/done.svg')
     }
