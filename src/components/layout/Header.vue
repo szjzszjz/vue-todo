@@ -12,8 +12,9 @@
         this.$notify({
           content: 'content test',
           btn: 'close',
-          bgc: '#303030',
-          autoCloseTime: 6000
+          bgc: '#424a59',
+          id: this.$notify.id
+          // autoCloseTime: 6000
         })
       }
     }

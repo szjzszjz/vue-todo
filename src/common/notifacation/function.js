@@ -1,7 +1,7 @@
 import Vue from 'vue'
-import Component from './func-notification'
+import NotificationBar from './NotificationBar'
 
-const NotificationConstructor = Vue.extend(Component)
+const NotificationConstructor = Vue.extend(NotificationBar)
 
 const instances = []
 let seed = 1
@@ -12,8 +12,9 @@ const removeInstance = (instance) => {
   instances.splice(index, 1)
 
   const len = instances.length
+  console.log(len)
   if (len <= 1) return
-  const removeHeight = instance.vm.height
+  const removeHeight = instance.vm.barHeight
   console.log('removeHeight-' + removeHeight)
   for (let i = index; i < len - 1; i++) {
     instances[i].verticalOffset = parseInt(instances[i].verticalOffset) - removeHeight - 16
@@ -37,6 +38,7 @@ const notify = (options) => {
     }
   })
   const id = `notification_${seed++}`
+  console.log('id' + id)
   instance.id = id
 
   instance.vm = instance.$mount()
