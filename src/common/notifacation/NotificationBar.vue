@@ -6,7 +6,8 @@
     <div class="notification-bar"
          :style="style"
          v-show="visible"
-         ref="notificationBar">
+         @mouseenter="clearTimer"
+         @mouseleave="createTimer">
       <span class="content">{{content}}</span>
       <div class="line"></div>
       <img v-if="closeBtn===undefined" src="./delete.png" class="icon-close" @click="handleClose">
@@ -56,13 +57,17 @@
       }
     },
     methods: {
+      clearTimer() {
+        window.clearTimeout(this.timerID)
+        console.log('stop--' + this.timerID)
+      },
       handleClose(e) {
         e.preventDefault()
         this.$emit('ison-close')
       },
       createTimer() {
         console.log('createTimer--' + this.autoCloseTime)
-        this.timer = setTimeout(() => {
+        this.timerID = setTimeout(() => {
           this.visible = false
         }, this.autoCloseTime)
       },
@@ -75,6 +80,12 @@
         this.barHeight = this.$el.offsetHeight
         console.log('beforeLeave' + this.barHeight)
       }
+
+      // v-show=true 所以动画进入的事件不会触发
+      // afterEnter(el) {
+      //   console.log('afterLeave')
+      //   this.$emit('closed')
+      // },
     },
     // 页面渲染完成之后加载计时器
     mounted() {
@@ -82,8 +93,8 @@
     },
     // 离开组件的时候销毁定时器
     beforeDestroy() {
-      console.log('clearTimeout')
-      window.clearTimeout()
+      window.clearTimeout(this.timerID)
+      console.log('clearTimeout--' + this.timerID)
     }
   }
 </script>
@@ -149,11 +160,12 @@
     cursor: pointer
 
   }
+
   .text-close:hover {
     color: yellowgreen
   }
 
-  img:hover{
-    filter drop-shadow(0,0,0 , #63800f)
+  img:hover {
+    filter drop-shadow(0, 0, 0, #63800f)
   }
 </style>

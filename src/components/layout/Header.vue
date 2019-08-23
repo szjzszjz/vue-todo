@@ -13,7 +13,7 @@
           content: '這裏有廣澳！',
           // closeBtn: 'close',
           bgc: '#424a59',
-          autoCloseTime: 5000
+          autoCloseTime: 2000
         })
       }
     }
