@@ -12,11 +12,11 @@ const removeInstance = (instance) => {
   instances.splice(index, 1)
 
   const len = instances.length
-  console.log(len)
-  if (len <= 1) return
+  console.log('len--' + len)
+  if (len < 1) return
   const removeHeight = instance.vm.barHeight
   console.log('removeHeight-' + removeHeight)
-  for (let i = index; i < len - 1; i++) {
+  for (let i = index; i <= len - 1; i++) {
     instances[i].verticalOffset = parseInt(instances[i].verticalOffset) - removeHeight - 16
   }
 }
@@ -25,16 +25,12 @@ const notify = (options) => {
   if (Vue.prototype.$isServer) return
 
   const {
-    autoCloseTime,
     ...rest
   } = options
 
   const instance = new NotificationConstructor({
     propsData: {
       ...rest
-    },
-    data: {
-      autoCloseTime: autoCloseTime === undefined ? 3000 : autoCloseTime
     }
   })
   const id = `notification_${seed++}`
@@ -59,7 +55,7 @@ const notify = (options) => {
     instance.vm.$destroy() // 销毁
   })
 
-  instance.vm.$on('close', () => {
+  instance.vm.$on('ison-close', () => {
     instance.vm.visible = false
   })
   return instance.vm

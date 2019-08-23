@@ -10,11 +10,10 @@
     methods: {
       notify() {
         this.$notify({
-          content: 'content test',
-          btn: 'close',
+          content: '這裏有廣澳！',
+          // closeBtn: 'close',
           bgc: '#424a59',
-          id: this.$notify.id
-          // autoCloseTime: 6000
+          autoCloseTime: 5000
         })
       }
     }

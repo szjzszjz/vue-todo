@@ -1,13 +1,18 @@
 <template>
   <transition name="fade"
+              @before-leave="beforeLeave"
               @after-leave="afterLeave"
-              v-on:after-enter="afterEnter">
+  >
     <div class="notification-bar"
          :style="style"
          v-show="visible"
-         ref="notificationBar" >
+         ref="notificationBar">
       <span class="content">{{content}}</span>
-      <img src="./delete.png" class="close" @click="handleClose">
+      <div class="line"></div>
+      <img v-if="closeBtn===undefined" src="./delete.png" class="icon-close" @click="handleClose">
+      <span v-else class="text-close" @click="handleClose">
+        {{closeBtn}}
+      </span>
     </div>
   </transition>
 </template>
@@ -20,21 +25,22 @@
         type: String,
         require: true
       },
-      btn: {
-        type: String,
-        default: '关闭'
+      closeBtn: {
+        type: String
       },
       bgc: {
         type: String,
         default: '#303030'
+      },
+      autoCloseTime: {
+        type: Number,
+        default: 1000
       }
     },
     data() {
       return {
         visible: true,
         verticalOffset: 0,
-        autoCloseTime: 3000,
-        // eslint-disable-next-line no-undef
         barHeight: 0
       }
     },
@@ -52,38 +58,31 @@
     methods: {
       handleClose(e) {
         e.preventDefault()
-        this.$emit('close')
+        this.$emit('ison-close')
       },
-      // 动画完成之后执行此方法
-      afterLeave() {
-        console.log('afterLeave')
-        this.$emit('closed')
-      },
-      afterEnter: function(el) {
-        console.log('动画进入之后')
-        el.style.background = 'blue'
-      },
-      // 进入动画之后
-      // afterEnter() {},
       createTimer() {
-        // const closeTime = this.autoCloseTime !== null ? this.autoCloseTime : 3000
-        console.log(this.autoCloseTime)
-        //  console.log('createTimer---' + this.autoCloseTime)
+        console.log('createTimer--' + this.autoCloseTime)
         this.timer = setTimeout(() => {
           this.visible = false
         }, this.autoCloseTime)
+      },
+      // 动画完成之后执行此方法
+      afterLeave(el) {
+        console.log('afterLeave')
+        this.$emit('closed')
+      },
+      beforeLeave(el) {
+        this.barHeight = this.$el.offsetHeight
+        console.log('beforeLeave' + this.barHeight)
       }
-
     },
     // 页面渲染完成之后加载计时器
     mounted() {
       this.createTimer()
-
-      // console.log('notificationBar--' + this.$refs.notificationBar.getBoundingClientRect().top)
-      // this.barHeight = this.$refs.notificationBar.style.width
     },
     // 离开组件的时候销毁定时器
     beforeDestroy() {
+      console.log('clearTimeout')
       window.clearTimeout()
     }
   }
@@ -120,12 +119,41 @@
     /*background-color: red;*/
   }
 
-  .close {
-    color: #ff4090
+  .line {
+    height: 5vh
+    width: 1px
+    border-left: 1px #000 solid
+  }
+
+  .icon-close {
+    color: red
     width: 1.5vw
     height: 1.5vw
+    line-height 1.5vw
+    text-align center
     /*background-color: yellowgreen*/
     margin: auto
     cursor: pointer
+  }
+
+  .text-close {
+    display: inline-block
+    color: red
+    width: 15%
+    height: 9vh
+    font-size: 14px
+    line-height 9vh
+    text-align center
+    /*background-color: yellowgreen*/
+    margin: auto
+    cursor: pointer
+
+  }
+  .text-close:hover {
+    color: yellowgreen
+  }
+
+  img:hover{
+    filter drop-shadow(0,0,0 , #63800f)
   }
 </style>
