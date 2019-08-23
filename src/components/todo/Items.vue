@@ -1,7 +1,7 @@
 <template>
   <transition name="fade">
     <div :class="['todo-item', todo.completed ? 'completed':'']">
-      <input type="checkbox" class="toggle" v-model="todo.completed">
+      <input type="checkbox" class="toggle" @change="changing" v-model="todo.completed">
       <label>{{todo.content}}</label>
       <button class="destroy" @click="deleteTodo"></button>
     </div>
@@ -21,6 +21,16 @@
       deleteTodo() {
         console.log('deletetodo')
         this.$emit('deleteTodo', this.todo.id)
+      },
+      changing() {
+        if (this.todo.completed) {
+          this.$notify({
+            content: '每天进步一点点...',
+            // closeBtn: 'close',
+            bgc: '#424a59',
+            autoCloseTime: 3000
+          })
+        }
       }
     }
   }

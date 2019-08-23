@@ -8,7 +8,9 @@
          v-show="visible"
          @mouseenter="clearTimer"
          @mouseleave="createTimer">
-      <span class="content">{{content}}</span>
+      <div class="content-card">
+        <span class="content">{{content}}</span>
+      </div>
       <div class="line"></div>
       <img v-if="closeBtn===undefined" src="./delete.png" class="icon-close" @click="handleClose">
       <span v-else class="text-close" @click="handleClose">
@@ -103,7 +105,7 @@
   @import "~assets/styles/varibles.styl"
   .notification-bar {
     overflow: hidden
-    box-sizing: border-box
+    /*box-sizing: border-box*/
     width: 20vw
     min-width 16vw
     height: 10vh
@@ -119,15 +121,29 @@
     transition: all 0.3s
   }
 
-  .content {
-    overflow hidden
+  .content-card {
     width: 75%
     height: 10vh
-    line-height: 10vh
-    text-align center
-    font-size 16px
-    padding: 0 10px 0 10px
+    /*line-height: 5vh*/
+    padding: 5px 10px
     /*background-color: red;*/
+
+    //元素内元素竖直方向居中
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    //单行超出显示省略号
+   /* overflow: hidden;
+    white-space: wrap-option ;
+    text-overflow: ellipsis;*/
+    .content{
+      text-align center
+      font-size 16px
+      margin:auto
+      white-space: pre-line; //合并空白符序列，但是保留换行符。
+      word-break: break-all; //在恰当的断字点进行换行：
+      /*background-color: yellowgreen*/
+    }
   }
 
   .line {

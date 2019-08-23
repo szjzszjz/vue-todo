@@ -6,7 +6,13 @@
 * 基础Node知识  
 * 了解webpack  
 
+## 概念  
+### 1、服务器端渲染（SSR） VS 客户端渲染  
+`服务器端渲染` 后端先调用数据库，获得数据之后，在服务器端将数据和页面元素进行拼装，组合成完整的HTML页面，在直接返回给浏览器。  
+`客户端渲染` 数据有浏览器通过ajax动态获得，在通过js将数据填充到dom元素上最终展示到网页中。  
 
+
+## 封装组件  
 ### [通知弹窗组件](https://github.com/szjzszjz/vue-todo/tree/master/src/common/notifacation)
 
 ## 知识点  

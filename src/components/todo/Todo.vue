@@ -47,7 +47,8 @@
         },
         todos: [],
         filter: 'all',
-        tip: 'Life cannot be blank'
+        tip: 'Life cannot be blank',
+        completed: 0
       }
     },
     computed: {
@@ -66,16 +67,25 @@
     methods: {
       addTodo(data) {
         console.log(data.target.value.trim())
-        // unshift: 将元素插入到数组的首位
         if (data.target.value.trim() === '') {
           alert('please enter something ...')
         } else {
+          // unshift: 将元素插入到数组的首位
           this.todos.unshift({
             id: id++,
             content: data.target.value.trim(),
             completed: false
           })
           data.target.value = ''
+
+          const unCompleted = this.todos.filter(todo => todo.completed === false)
+          const str = '还有' + unCompleted.length + '事情未做,努力吧！骚年！'
+          this.$notify({
+            content: str,
+            // closeBtn: 'close',
+            bgc: '#424a59',
+            autoCloseTime: 6000
+          })
           console.log(this.todos)
         }
       },
